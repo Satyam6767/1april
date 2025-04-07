@@ -7,12 +7,31 @@ const userRoutes = require('./Routes/userRoutes')
 
 app.use(bodyParser.json())
 
-app.get('/', (req, res) => {
+const auth = require('./Auth')
+const User = require('./models/User')
+const passport = require('passport')
+
+
+const localauthmiddleware = passport.authenticate('local', {session: false})
+
+
+// Middleware
+const printdate = (req, res, next) => {
+    const currDate = new Date();
+    console.log(currDate.toDateString())
+    next()
+}
+
+app.get('/', printdate, (req, res) => {
     res.send("this is main page")
 })
 
+app.use(passport.initialize());
 
-app.use('/users', userRoutes)
+
+app.use('/users',   userRoutes)
+
+
 
 
 app.listen("7000", () => {

@@ -16,9 +16,18 @@ const UserSchema = new mongoose.Schema({
         required: true,
         enum: ["admin", "student", "teacher"] 
     },
+    username: {
+        type: String,
+        required: true
+
+    },
     
     age: {
         type: Number,
+        required: true
+    },
+    password : {
+        type:"String",
         required: true
     }
 })

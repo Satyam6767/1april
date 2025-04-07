@@ -16,7 +16,6 @@ router.post('/', async (req, res) => {
     catch (error) {
         console.log("error while saving data", error)
     }
-    
 })
 
 // grt all user
